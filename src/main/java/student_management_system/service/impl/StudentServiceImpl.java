@@ -13,11 +13,14 @@ import student_management_system.service.StudentService;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private final StudentRepository studentRepository;
+
+    public StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     public List<StudentDto> getAllStudents(){
         List<Student> students = studentRepository.findAll();
@@ -43,9 +46,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto createNewStudent(AddStudentRequestDto addStudentRequestDto) {
         Student newStudent = new Student();
+
         newStudent.setName(addStudentRequestDto.getName());
         newStudent.setEmail(addStudentRequestDto.getEmail());
         newStudent.setCourse(addStudentRequestDto.getCourse());
+
         Student student = studentRepository.save(newStudent);// <-- here we can add only entity object
 
         StudentDto studentDto = new StudentDto(student.getId(),
@@ -65,7 +70,6 @@ public class StudentServiceImpl implements StudentService {
 
         StudentDto studentDto = new StudentDto(updatedStudent.getId(),
                 updatedStudent.getName(),updatedStudent.getEmail(),updatedStudent.getCourse());
-
         return studentDto;
 
     }
@@ -74,7 +78,6 @@ public class StudentServiceImpl implements StudentService {
     public void deleteStudentByid(Long id) {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
-
         studentRepository.delete(student);
     }
 

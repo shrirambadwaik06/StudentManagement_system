@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import student_management_system.dto.AddStudentRequestDto;
 import student_management_system.dto.StudentDto;
-import student_management_system.entity.Student;
 import student_management_system.service.StudentService;
 
 import java.util.List;
