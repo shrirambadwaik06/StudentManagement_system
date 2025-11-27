@@ -10,7 +10,7 @@ public interface StudentService {
     List<StudentDto> getAllStudents();
     StudentDto getStudebtById(Long id);
 
-    StudentDto createNewStudent(AddStudentRequestDto addStudentRequestDto);
+    StudentDto createNewStudent(AddStudentRequestDto addStudentRequestDto) throws IllegalAccessException;
 
     StudentDto updateStudent(Long id, AddStudentRequestDto addStudentRequestDto);
 

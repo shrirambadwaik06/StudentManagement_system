@@ -1,7 +1,6 @@
 package student_management_system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import student_management_system.dto.AddFacultyRequestDto;
 import student_management_system.dto.FacultyDto;
@@ -27,8 +26,6 @@ public class FacullyServiceImpl implements FacultyService {
         faculty.setEmail(addFacultyRequestDto.getEmail());
         faculty.setContactNumber(addFacultyRequestDto.getContactNumber());
         faculty.setDepartment(addFacultyRequestDto.getDepartment());
-
-
         // Here you would typically save the faculty entity to the database
         // and retrieve the generated ID. For this example, we'll skip that part.
         Faculty savedFaculty = facultyRepository.save(faculty); // Assume this is the saved entity with an ID.
