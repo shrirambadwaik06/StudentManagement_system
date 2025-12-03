@@ -1,6 +1,9 @@
 package student_management_system.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.sql.ast.tree.expression.Summarization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,9 +15,9 @@ import student_management_system.service.StudentService;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Student API", description = "Operation for the study module ")
 public class StudentController {
 
     private static final Logger log = LoggerFactory.getLogger(StudentController.class);
@@ -27,6 +30,7 @@ public class StudentController {
 
     // Get all students
     @GetMapping("/student")
+    @Operation(summary = "Get student by ID", description ="return a student  for the given ID")
     public ResponseEntity<List<StudentDto>> getStudent() {
         log.info("API Called: GET /student");                     // API call info
         List<StudentDto> students = studentService.getAllStudents();
@@ -36,6 +40,7 @@ public class StudentController {
 
     // Get student by ID
     @GetMapping("/students/{id}")
+    @Operation(summary = "Get Student by Id ",description = "get stydent from id ")
     public ResponseEntity<StudentDto> getStudentById(@PathVariable Long id) {
         log.info("API Called: GET /students/{}", id);             // API call
         try {
@@ -50,6 +55,7 @@ public class StudentController {
 
     // Create a new student
     @PostMapping("/students")
+    @Operation(summary = "Create a new student" , description = "create a student")
     public ResponseEntity<StudentDto> createStudent(@RequestBody AddStudentRequestDto addStudentRequestDto) throws IllegalAccessException {
         log.info("API Called: POST /students");                   // API call info
         log.debug("Request Body: {}", addStudentRequestDto);      // Detailed input
@@ -65,6 +71,7 @@ public class StudentController {
 
     // Update a student
     @PutMapping("/students/{id}")
+    @Operation(summary = "Update a student by using id ",description = "update student")
     public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id,
                                                     @RequestBody AddStudentRequestDto addStudentRequestDto) {
         log.info("API Called: PUT /students/{}", id);
@@ -81,6 +88,7 @@ public class StudentController {
 
     // Delete a student
     @DeleteMapping("/students/{id}")
+    @Operation(summary = "Delete Student by using Id " ,description = "Delete student using Id")
     public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
         log.info("API Called: DELETE /students/{}", id);
         try {
