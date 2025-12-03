@@ -23,7 +23,7 @@ public class AttendanceController {
         this.attendanceService = attendanceService;
     }
 
-    @PostMapping
+    @PostMapping("/attendance")
     public ResponseEntity<AttendanceDto> createAttendance(@Valid @RequestBody AttendanceRequestDto dto){
          log.info("Create AttendaceAPi Called :");
         return ResponseEntity.ok(attendanceService.createAttendace(dto));

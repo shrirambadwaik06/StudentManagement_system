@@ -61,7 +61,7 @@ public class StudentController {
         log.debug("Request Body: {}", addStudentRequestDto);      // Detailed input
         try {
             StudentDto createdStudent = studentService.createNewStudent(addStudentRequestDto);
-            log.info("Student created successfully with id {}", createdStudent.getId());
+            log.info("Student created successfully with id {}", createdStudent.getStudentId());
             return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
         } catch (Exception ex) {
             log.error("Error creating student: {}", ex.getMessage(), ex);
